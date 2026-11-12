@@ -10,6 +10,7 @@ using System.IO;
 using System.Net.Mail;
 using Newtonsoft.Json;
 using System.Net;
+using Sentry;
 
 namespace PPDRouteDeviatedVehicles
 {
@@ -21,36 +22,67 @@ namespace PPDRouteDeviatedVehicles
         private static DateTime endTime = DateTime.Now;
         private static DateTime startTime = DateTime.Now;
 
+        private static async Task<string> GetSentryDsn()
+        {
+            try
+            {
+                using var client = new HttpClient();
+                string encryptedDsn = await client.GetStringAsync("https://external.balajitransports.in/api/Sentry/GetDsn?type=consoleapplications");
+                return AesDecryptionHelper.Decrypt(encryptedDsn.Trim().Trim('"'));
+            }
+            catch (Exception ex)
+            {
+                ErrorsList.Add($"Failed to fetch Sentry DSN: \n{ex.Message}\n{ex.StackTrace}");
+                Console.WriteLine($"Failed to fetch Sentry DSN: {ex.Message}");
+                return string.Empty; 
+            }
+        }
+
         static async Task Main(string[] args)
         {
-            await RunApplicationLogic();
+#if DEBUG
+            string sentryDsn = string.Empty;
+#else
+            string sentryDsn = await GetSentryDsn();
+#endif
 
-            if (ErrorsList.Count > 0)
+            using (SentrySdk.Init(s =>
             {
-                Console.WriteLine("Errors:");
-
-                ErrorsList.ForEach(e => Console.WriteLine(e));
-
-                string allErrors = string.Join(Environment.NewLine, ErrorsList);
-
-                await LogMonitor(
-                    startTime,
-                    endTime,
-                    allErrors,
-                    "PPDRouteDeviatedVehicles"
-                );
-            }
-            else
+                s.Dsn = sentryDsn;
+                s.Debug = false;
+                s.TracesSampleRate = 1.0;
+                s.Environment = "PPDRouteDeviatedVehicles";
+            }))
             {
-                await LogMonitor(
-                    startTime,
-                    endTime,
-                    "",
-                    "PPDRouteDeviatedVehicles"
-                );
-            }
+                await RunApplicationLogic();
 
-            Console.WriteLine("Process completed.");
+                if (ErrorsList.Count > 0)
+                {
+                    Console.WriteLine("Errors:");
+
+                    ErrorsList.ForEach(e => Console.WriteLine(e));
+
+                    string allErrors = string.Join(Environment.NewLine, ErrorsList);
+
+                    await LogMonitor(
+                        startTime,
+                        endTime,
+                        allErrors,
+                        "PPDRouteDeviatedVehicles"
+                    );
+                }
+                else
+                {
+                    await LogMonitor(
+                        startTime,
+                        endTime,
+                        "",
+                        "PPDRouteDeviatedVehicles"
+                    );
+                }
+
+                Console.WriteLine("Process completed.");
+            }
         }
 
         #region AES Helper

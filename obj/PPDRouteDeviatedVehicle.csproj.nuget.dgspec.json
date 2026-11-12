@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DELL\\source\\repos\\PPDRouteDeviatedVehicle\\PPDRouteDeviatedVehicle.csproj": {}
+    "C:\\Users\\Aashritha Y S\\Desktop\\GitClones\\PPDRouteDeviatedVehicles\\PPDRouteDeviatedVehicle.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DELL\\source\\repos\\PPDRouteDeviatedVehicle\\PPDRouteDeviatedVehicle.csproj": {
+    "C:\\Users\\Aashritha Y S\\Desktop\\GitClones\\PPDRouteDeviatedVehicles\\PPDRouteDeviatedVehicle.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DELL\\source\\repos\\PPDRouteDeviatedVehicle\\PPDRouteDeviatedVehicle.csproj",
+        "projectUniqueName": "C:\\Users\\Aashritha Y S\\Desktop\\GitClones\\PPDRouteDeviatedVehicles\\PPDRouteDeviatedVehicle.csproj",
         "projectName": "PPDRouteDeviatedVehicle",
-        "projectPath": "C:\\Users\\DELL\\source\\repos\\PPDRouteDeviatedVehicle\\PPDRouteDeviatedVehicle.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DELL\\source\\repos\\PPDRouteDeviatedVehicle\\obj\\",
+        "projectPath": "C:\\Users\\Aashritha Y S\\Desktop\\GitClones\\PPDRouteDeviatedVehicles\\PPDRouteDeviatedVehicle.csproj",
+        "packagesPath": "C:\\Users\\Aashritha Y S\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Aashritha Y S\\Desktop\\GitClones\\PPDRouteDeviatedVehicles\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Aashritha Y S\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -50,6 +50,10 @@
               "target": "Package",
               "version": "[13.0.4, )"
             },
+            "Sentry": {
+              "target": "Package",
+              "version": "[5.8.0, )"
+            },
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.9.1, )"
@@ -69,19 +73,27 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.35, 6.0.35]"
+              "version": "[6.0.31, 6.0.31]"
             },
             {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[6.0.35, 6.0.35]"
+              "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
+              "version": "[6.0.31, 6.0.31]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.linux-x64",
+              "version": "[6.0.31, 6.0.31]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.35, 6.0.35]"
+              "version": "[6.0.31, 6.0.31]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Runtime.linux-x64",
+              "version": "[6.0.31, 6.0.31]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[6.0.35, 6.0.35]"
+              "version": "[6.0.31, 6.0.31]"
             }
           ],
           "frameworkReferences": {
@@ -89,7 +101,12 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "linux-x64": {
+          "#import": []
         }
       }
     }
